@@ -77,7 +77,7 @@ namespace Jamify
         private double FrameDuration { get; set; }
         #endregion #region Gif playback parameters
 
-        public event EventHandler FrameUpdate;
+        public event EventHandler<FrameChangedEventArgs> FrameChanged;
 
         public GifManagerService()
         {
@@ -94,6 +94,7 @@ namespace Jamify
             Stop();
             Running = true;
             //FrameUpdateTimer.Start();
+            CurrentFrameIndex = -1;
             FrameUpdateThread = new Thread(FrameUpdateLoop);
             FrameUpdateThread.IsBackground = true;
             FrameUpdateThread.Start();
@@ -145,6 +146,7 @@ namespace Jamify
         {
             var beginningRender = BeatStopwatch.Elapsed.TotalMilliseconds;
             var noRevFrameCount = EndFrame - StartFrame + 1;
+            var previousFrameIndex = CurrentFrameIndex;
             if (PlayingFrameCount == 1)
             {
                 FrameDuration = 0;
@@ -159,7 +161,9 @@ namespace Jamify
                     CurrentFrameIndex = PlayingFrameCount - CurrentFrameIndex;
                 }
             }
-            FrameUpdate?.Invoke(this, EventArgs.Empty);
+            var frameChanged = previousFrameIndex != CurrentFrameIndex;
+            var args = new FrameChangedEventArgs(frameChanged, Frames[CurrentFrameIndex]);
+            FrameChanged?.Invoke(this, args);
             var endingRender = BeatStopwatch.Elapsed.TotalMilliseconds;
             RenderDuration = endingRender - beginningRender;
             LastFrameElapsed = endingRender;

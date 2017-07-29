@@ -47,21 +47,24 @@ namespace Jamify
                 "[F12]      Fullscreen";
 
             GifManager = new GifManagerService();
-            GifManager.FrameUpdate += GifManagerOnFrameUpdate;
+            GifManager.FrameChanged += GifManagerOnFrameChanged;
         }
 
-        private void GifManagerOnFrameUpdate(object sender, EventArgs eventArgs)
+        private void GifManagerOnFrameChanged(object sender, FrameChangedEventArgs args)
         {
-            Dispatcher.Invoke(DispatcherPriority.Normal, new Action(() =>
+            var timeout = new TimeSpan(0, 0, 0, 1);
+            Dispatcher.Invoke(DispatcherPriority.Normal, timeout, new Action(() =>
             {
-                if (StatsLabel.IsVisible)
+                if(StatsLabel.IsVisible)
                 {
                     StatsLabel.Content = GifManager.GetStatusString();
                 }
-                MainImage.Source = GifManager.Frames[GifManager.CurrentFrameIndex];
+                if (args.FrameChanged)
+                {
+                    MainImage.Source = args.CurrentFrame;
+                }
             }));
         }
-
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

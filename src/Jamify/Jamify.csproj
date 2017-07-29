@@ -76,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FrameUpdatedEventArgs.cs" />
     <Compile Include="GifManagerService.cs" />
     <Compile Include="User32.cs" />
     <Page Include="MainWindow.xaml">
