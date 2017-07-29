@@ -1,0 +1,11 @@
+﻿<Window x:Class="Taskaliukas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Jamify" Height="391" Width="645" Loaded="Window_Loaded" KeyDown="Window_KeyDown" Closed="Window_Closed" Background="Black" Icon="awesome.ico" FontFamily="Courier New">
+    <Grid>
+        <Image x:Name="MainImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Label x:Name="StatsLabel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="341" Width="368" Foreground="White"/>
+        <Label x:Name="HelpLabel" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="341" Width="244" Foreground="White"/>
+
+    </Grid>
+</Window>
