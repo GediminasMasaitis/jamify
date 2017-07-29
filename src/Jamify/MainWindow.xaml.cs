@@ -7,7 +7,7 @@ using System.Windows.Threading;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
-namespace Taskaliukas
+namespace Jamify
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

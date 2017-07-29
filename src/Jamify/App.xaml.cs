@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Taskaliukas
+namespace Jamify
 {
     /// <summary>
     /// Interaction logic for App.xaml
